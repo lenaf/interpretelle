@@ -132,7 +132,7 @@ export function Box({
   )
 }
 
-interface FlexListProps extends FlexProps {}
+interface FlexListProps extends FlexProps { }
 
 export function FlexList(props: WithChildren<FlexListProps>) {
   return <Flex as="ul" cx={[styles.list]} {...props} />
@@ -177,7 +177,7 @@ export function Nudge({
   )
 }
 
-interface SectionProps extends BoxProps {}
+interface SectionProps extends BoxProps { }
 
 export function Section(props: WithChildren<SectionProps>) {
   return <Box as="section" className={styles.section} {...props} />
@@ -251,6 +251,8 @@ interface ButtonProps extends BaseProps {
   variant?: styles.ButtonVariants
   href?: string
   to?: string
+  type?: string
+  disabled?: boolean;
 }
 
 export function Button({

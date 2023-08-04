@@ -125,6 +125,8 @@ exports.createSchemaCustomization = async ({ actions }) => {
       image: HomepageImage
       text: String
       links: [HomepageLink]
+      imageOnLeft: Boolean
+      richHeader: JSON
     }
 
     interface HomepageFeature implements Node & HomepageBlock {
@@ -154,6 +156,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       text: String
       image: HomepageImage
       links: [HomepageLink]
+      richText: JSON
     }
 
     interface HomepageLogo implements Node {
@@ -387,6 +390,8 @@ exports.createSchemaCustomization = async ({ actions }) => {
       image: HomepageImage @link(from: "image___NODE")
       text: String
       links: [HomepageLink] @link(from: "links___NODE")
+      imageOnLeft: Boolean
+      richHeader: JSON
     }
 
     type ContentfulHomepageFeature implements Node & HomepageBlock & HomepageFeature
@@ -416,6 +421,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       text: String
       image: HomepageImage @link(from: "image___NODE")
       links: [HomepageLink] @link(from: "links___NODE")
+      richText: JSON
     }
 
     type ContentfulHomepageLogo implements Node & HomepageLogo @dontInfer {
@@ -623,4 +629,3 @@ exports.createPages = ({ actions }) => {
     component: require.resolve("./src/components/footer.tsx"),
   })
 }
-      

@@ -114,10 +114,6 @@ export default function Footer() {
     <Box as="footer" paddingY={4}>
       <Container>
         <Flex variant="start" responsive>
-          <NavLink to="/">
-            <VisuallyHidden>Home</VisuallyHidden>
-            <BrandLogo />
-          </NavLink>
           <Space />
           <FlexList>
             {socialLinks &&

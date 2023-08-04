@@ -1,4 +1,6 @@
 import * as React from "react"
+import clsx from 'clsx';
+
 import { graphql, useStaticQuery } from "gatsby"
 import { Menu, X } from "react-feather"
 import {
@@ -20,7 +22,9 @@ import {
   mobileNavSVGColorWrapper,
 } from "./header.css"
 import NavItemGroup, { NavItemGroupNavItem } from "./nav-item-group"
-import BrandLogo from "./brand-logo"
+import Logo from "./logo";
+import LogoIcon from "./logiIcon"
+
 
 type NavItem = {
   id: string
@@ -98,14 +102,29 @@ export default function Header() {
     }
   }, [isOpen])
 
+  const [scrolledDown, setScrolledDown] = React.useState(false);
+
+  const handleScroll = () => {
+    setScrolledDown(window.scrollY > 50);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    // Trigger handler on mount to account for reloads
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header>
+    <header className={clsx([
+      'fixed w-full h-20 z-40 bg-white backdrop-blur-lg backdrop-filter duration-500',
+      scrolledDown ? 'bg-opacity-90' : 'bg-opacity-90',
+    ])}>
       <Container className={desktopHeaderNavWrapper}>
-        <Space size={2} />
-        <Flex variant="spaceBetween">
+        <Flex className='h-20' variant="spaceBetween">
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
-            <BrandLogo />
+            <Logo />
           </NavLink>
           <nav>
             <FlexList gap={4}>
@@ -128,8 +147,7 @@ export default function Header() {
         </Flex>
       </Container>
       <Container className={mobileHeaderNavWrapper[isOpen ? "open" : "closed"]}>
-        <Space size={2} />
-        <Flex variant="spaceBetween">
+        <Flex className='h-20' variant="spaceBetween">
           <span
             className={
               mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]
@@ -137,7 +155,7 @@ export default function Header() {
           >
             <NavLink to="/">
               <VisuallyHidden>Home</VisuallyHidden>
-              <BrandLogo />
+              <LogoIcon />
             </NavLink>
           </span>
           <Flex>

@@ -12,9 +12,10 @@ export interface FeatureListProps {
 
 export default function FeatureList(props: FeatureListProps) {
   return (
-    <Container width="fullbleed">
+    <Container className={'bg-green'} width="fullbleed">
+      TEST
       <Box background="muted" radius="large">
-        <Box center paddingY={5}>
+        <Box center paddingY={3}>
           <Heading>
             {props.kicker && <Kicker>{props.kicker}</Kicker>}
             {props.heading}

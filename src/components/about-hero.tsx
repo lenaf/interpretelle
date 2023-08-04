@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Container, Section, Text, SuperHeading, HomepageImage } from "./ui"
 import * as styles from "./about-hero.css"
+import { colors } from "../colors.css"
 
 export interface AboutHeroProps {
   heading: string
@@ -27,6 +28,7 @@ export default function AboutHero(props: AboutHeroProps) {
             alt={props.image.alt}
             image={getImage(props.image.gatsbyImageData)}
             className={styles.aboutHeroImage}
+            backgroundColor={colors.active}
           />
         )}
       </Container>

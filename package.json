@@ -6,7 +6,7 @@
   },
   "scripts": {
     "start": "gatsby develop",
-    "develop": "gatsby develop",
+    "develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -16,18 +16,22 @@
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^15.11.1",
-    "gatsby-plugin-manifest": "^5.0.0",
-    "gatsby-source-contentful": "^8.0.0",
     "@fontsource/dm-mono": "^4.5.9",
     "@fontsource/dm-sans": "^4.5.8",
+    "@headlessui/react": "^1.7.16",
+    "@heroicons/react": "^2.0.18",
     "@vanilla-extract/babel-plugin": "^1.2.0",
     "@vanilla-extract/css": "^1.9.0",
     "@vanilla-extract/css-utils": "^0.1.2",
     "@vanilla-extract/webpack-plugin": "^2.1.12",
+    "clsx": "^1.2.1",
     "gatsby": "^5.0.0",
     "gatsby-plugin-image": "^3.0.0",
+    "gatsby-plugin-manifest": "^5.0.0",
+    "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5.0.0",
     "gatsby-plugin-vanilla-extract": "^4.0.1",
+    "gatsby-source-contentful": "^8.0.0",
     "gatsby-source-filesystem": "^5.0.0",
     "gatsby-transformer-sharp": "^5.0.0",
     "is-absolute-url": "^4.0.1",
@@ -37,15 +41,19 @@
     "sharp": "^0.30.5"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.14",
     "chalk": "4",
     "contentful-cli": "^1.15.3",
     "contentful-import": "^8.3.2",
+    "gatsby-plugin-postcss": "^6.11.0",
     "gatsby-provision-contentful": "^0.0.5",
-    "inquirer": "^8.2.0",
-    "yargs-parser": "^21.0.0",
-    "prettier": "2.5.1",
     "husky": "^7.0.4",
+    "inquirer": "^8.2.0",
     "lint-staged": "^12.3.5",
-    "typescript": "^4.6.2"
+    "postcss": "^8.4.24",
+    "prettier": "2.5.1",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^4.6.2",
+    "yargs-parser": "^21.0.0"
   }
 }

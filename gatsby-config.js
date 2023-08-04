@@ -23,8 +23,26 @@ module.exports = {
     },
     "gatsby-plugin-sharp",
     "gatsby-plugin-image",
-    "gatsby-transformer-sharp",
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: "none",
+          quality: 50,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: "#F9F2E2",
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        }
+      }
+    },
     "gatsby-plugin-vanilla-extract",
+    'gatsby-plugin-postcss',
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -32,10 +50,18 @@ module.exports = {
         short_name: "Gatsby",
         start_url: "/",
         // These can be imported once ESM support lands
-        background_color: "#ffe491",
-        theme_color: "#004ca3",
+        background_color: "#ffd500",
+        theme_color: "#ffd500",
         icon: "src/favicon.png",
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
+    }
   ],
 }

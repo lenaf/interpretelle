@@ -14,8 +14,8 @@ export const container = style({
   maxWidth: theme.sizes.container,
   marginLeft: "auto",
   marginRight: "auto",
-  paddingLeft: theme.space[4],
-  paddingRight: theme.space[4],
+  paddingLeft: theme.space[5],
+  paddingRight: theme.space[5],
 })
 
 export type Containers = "normal" | "wide" | "narrow" | "tight" | "fullbleed"
@@ -47,14 +47,14 @@ export const containers: Record<Containers, string> = styleVariants({
     {
       paddingLeft: 0,
       paddingRight: 0,
-      paddingTop: theme.space[4],
-      paddingBottom: theme.space[4],
+      paddingTop: theme.space[2],
+      paddingBottom: theme.space[2],
       "@media": {
         [media.medium]: {
           paddingLeft: theme.space[4],
           paddingRight: theme.space[4],
-          paddingTop: theme.space[5],
-          paddingBottom: theme.space[5],
+          paddingTop: theme.space[3],
+          paddingBottom: theme.space[3],
         },
       },
     },
@@ -194,8 +194,8 @@ export const box = styleVariants({
 })
 
 export const section = style({
-  paddingTop: theme.space[4],
-  paddingBottom: theme.space[4],
+  paddingTop: theme.space[5],
+  paddingBottom: theme.space[5],
   "@media": {
     [media.small]: {
       paddingTop: theme.space[5],
@@ -451,7 +451,7 @@ export const ctaLink = style({
   color: "inherit",
   fontWeight: theme.fontWeights.bold,
   ":hover": {
-    color: theme.colors.active,
+    color: theme.colors.primary,
   },
 })
 
@@ -627,4 +627,27 @@ export const visuallyHidden = style({
 // for debugging only
 export const debug = style({
   outline: "1px solid tomato",
+})
+
+
+export const desktopOnly = style({
+  position: "relative",
+  zIndex: 1,
+  display: "none",
+  "@media": {
+    [media.small]: {
+      display: "block",
+    },
+  },
+})
+
+const mobileOnly = style({
+  display: "block",
+  position: "relative",
+  paddingTop: theme.space[3],
+  "@media": {
+    [media.small]: {
+      display: "none",
+    },
+  },
 })

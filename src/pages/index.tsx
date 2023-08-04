@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
 import SEOHead from "../components/head"
+import Contact from "../components/contact"
 
 interface HomepageProps {
   data: {
@@ -19,14 +20,14 @@ interface HomepageProps {
 
 export default function Homepage(props: HomepageProps) {
   const { homepage } = props.data
-
   return (
     <Layout>
-      {homepage.blocks.map((block) => {
+      {homepage.blocks.map((block, index) => {
         const { id, blocktype, ...componentProps } = block
         const Component = sections[blocktype] || Fallback
-        return <Component key={id} {...(componentProps as any)} />
+        return <Component blockIndex={index} key={id} {...(componentProps as any)} />
       })}
+      <Contact />
     </Layout>
   )
 }
