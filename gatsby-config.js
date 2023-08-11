@@ -41,8 +41,8 @@ module.exports = {
         }
       }
     },
-    "gatsby-plugin-vanilla-extract",
     'gatsby-plugin-postcss',
+    "gatsby-plugin-vanilla-extract",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
