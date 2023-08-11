@@ -21,6 +21,7 @@ import {
   HomepageLink,
 } from "./ui"
 import BrandLogo from "./brand-logo"
+import Logo from "./logo";
 
 const socialMedia = {
   TWITTER: {
@@ -132,9 +133,13 @@ export default function Footer() {
               })}
           </FlexList>
         </Flex>
-        <Space size={5} />
-        <Flex variant="start" responsive>
+        <Space size={4} />
+        <Flex variant="center" responsive>
           <FlexList variant="start" responsive>
+            <NavLink to="/">
+              <VisuallyHidden>Home</VisuallyHidden>
+              <Logo />
+            </NavLink>
             {links &&
               links.map((link) => (
                 <li key={link.id}>
