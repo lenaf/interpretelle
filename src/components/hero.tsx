@@ -13,6 +13,7 @@ import {
   Kicker,
   Section,
   Subhead,
+  SuperHeading,
   Text,
 } from "./ui"
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
@@ -51,10 +52,8 @@ export default function Hero(props: HeroProps) {
           </Box>}
           <Box width="half">
             <Flex gap={0} variant="column" alignItems='start' className="justify-end">
-              <h1 className={`${props.blockIndex === 0 ? 'text-7xl' : 'text-3xl'} mb-8 font-extrabold`}>
-                {props.kicker && <Kicker>{props.kicker}</Kicker>}
-                {props.richHeader ? renderRichText(props.richHeader, {}) : props.h1}
-              </h1>
+              {props.kicker && <Kicker>{props.kicker}</Kicker>}
+              <Text variant={props.blockIndex === 0 ? 'superHeading' : 'heading'}>{props.richHeader ? renderRichText(props.richHeader, {}) : props.h1}</Text>
               {/* <Subhead as="h1" className='-mt-8'>{props.subhead}</Subhead> */}
               <div className="text-lg">{props.text}</div>
               <ButtonList links={props.links} />

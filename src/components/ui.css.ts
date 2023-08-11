@@ -287,9 +287,9 @@ export const text: Record<TextVariants, string> = styleVariants({
   superHeading: [
     margin0,
     {
-      marginTop: theme.space[4],
-      marginBottom: theme.space[6],
-      fontSize: theme.fontSizes[5],
+      marginTop: theme.space[3],
+      marginBottom: theme.space[3],
+      fontSize: theme.fontSizes[7],
       fontFamily: theme.fonts.heading,
       fontWeight: theme.fontWeights.extrabold,
       lineHeight: theme.lineHeights.heading,
@@ -340,7 +340,7 @@ export const text: Record<TextVariants, string> = styleVariants({
   kicker: [
     margin0,
     {
-      marginBottom: theme.space[2],
+      marginBottom: theme.space[1],
       fontFamily: theme.fonts.mono,
       fontSize: theme.fontSizes[1],
       fontWeight: theme.fontWeights.medium,
