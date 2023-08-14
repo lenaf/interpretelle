@@ -16,10 +16,8 @@ import {
   ButtonList,
 } from "./ui"
 import { colors } from "../colors.css"
-import Stethoscope from "./stethoscope"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { renderOptions } from "./page-content"
-import { useLocation } from '@reach/router';
 
 interface ProductProps {
   id: string
@@ -27,11 +25,10 @@ interface ProductProps {
   heading: string
   text: string
   links: HomepageLink[]
+  smallHeading?: boolean
 }
 
 function Product(props: ProductProps) {
-  const { pathname } = useLocation();
-
   return (
     <Box center>
       {props.image && (
@@ -41,7 +38,7 @@ function Product(props: ProductProps) {
           size="large"
         />
       )}
-      <Text variant={pathname.includes('services') ? 'subheadSmall' : 'subhead'}>{props.heading}</Text>
+      <Text variant={props.smallHeading ? 'subheadSmall' : 'subhead'}>{props.heading}</Text>
       <Text>{props.text}</Text>
       <LinkList links={props.links} />
     </Box>
@@ -56,11 +53,12 @@ export interface ProductListProps {
   links: HomepageLink[]
   image: HomepageImage
   blockIndex: number
+  path?: string;
 }
 
 export default function ProductList(props: ProductListProps) {
-  const { pathname } = useLocation();
 
+  console.log(props.path)
   return (
     <div id={props.heading} style={{ background: props.blockIndex % 2 === 0 ? colors.background : colors.active }}>
       <Section >
@@ -81,10 +79,10 @@ export default function ProductList(props: ProductListProps) {
             </Box>
             {props.richText && renderRichText(props.richText, renderOptions)}
           </Box>
-          <FlexList gap={4} variant={pathname.includes('services') ? "center" : 'responsive'}>
+          <FlexList gap={4} variant={props.path?.includes('services') ? "center" : 'responsive'}>
             {props.content?.map((product) => (
               <li key={product.id}>
-                <Product {...product} />
+                <Product smallHeading={props.path?.includes('services')} {...product} />
               </li>
             ))}
           </FlexList>

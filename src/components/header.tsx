@@ -1,7 +1,5 @@
 import * as React from "react"
 import clsx from 'clsx';
-import { useLocation } from '@reach/router';
-
 import { graphql, useStaticQuery } from "gatsby"
 import { Menu, X } from "react-feather"
 import {
@@ -56,7 +54,7 @@ interface HeaderData {
   }
 }
 
-export default function Header() {
+export default function Header(props) {
   const data: HeaderData = useStaticQuery(graphql`
     query {
       layout {
@@ -95,7 +93,6 @@ export default function Header() {
 
   const { navItems, cta } = data.layout.header
   const [isOpen, setOpen] = React.useState(false)
-  const { pathname } = useLocation();
 
   React.useEffect(() => {
     if (isOpen) {
@@ -140,7 +137,7 @@ export default function Header() {
                         navItems={navItem.navItems}
                       />
                     ) : (
-                      <NavLink to={navItem.href}><div style={pathname.includes(navItem.href) ? { color: colors.primary } : {}}>{navItem.text}</div></NavLink>
+                      <NavLink to={navItem.href}><div style={props.path?.includes(navItem.href) ? { color: colors.primary } : {}}>{navItem.text}</div></NavLink>
                     )}
                   </li>
                 ))}

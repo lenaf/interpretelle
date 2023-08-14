@@ -1,16 +1,11 @@
 import * as React from "react"
-import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import * as sections from "../components/sections"
-import Fallback from "../components/fallback"
-import SEOHead from "../components/head"
 import Contact from "../components/contact"
 
 
-export default function ContactPage() {
-
+export default function ContactPage(props) {
   return (
-    <Layout>
+    <Layout path={props.path}>
       <Contact />
     </Layout >
   )

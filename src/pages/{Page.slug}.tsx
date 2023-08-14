@@ -17,16 +17,17 @@ interface PageProps {
       blocks: sections.HomepageBlock[]
     }
   }
+  path: string;
 }
 
 export default function Page(props: PageProps) {
   const { page } = props.data
   return (
-    <Layout>
+    <Layout path={props.path}>
       {page.blocks?.map((block, index) => {
         const { id, blocktype, ...componentProps } = block
         const Component = sections[blocktype] || Fallback
-        return <Component blockIndex={index} key={id} {...(componentProps as any)} />
+        return <Component path={props.path} blockIndex={index} key={id} {...(componentProps as any)} />
 
       })}
 

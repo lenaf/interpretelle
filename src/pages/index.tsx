@@ -16,16 +16,18 @@ interface HomepageProps {
       blocks: sections.HomepageBlock[]
     }
   }
+  path?: string;
 }
 
 export default function Homepage(props: HomepageProps) {
+  console.log(props)
   const { homepage } = props.data
   return (
-    <Layout>
+    <Layout path={props.path}>
       {homepage.blocks.map((block, index) => {
         const { id, blocktype, ...componentProps } = block
         const Component = sections[blocktype] || Fallback
-        return <Component blockIndex={index} key={id} {...(componentProps as any)} />
+        return <Component path={props.path} blockIndex={index} key={id} {...(componentProps as any)} />
       })}
       <Contact />
     </Layout>
