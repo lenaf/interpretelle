@@ -3,6 +3,8 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Container, Box, Heading } from "../components/ui"
 import SEOHead from "../components/head"
+import * as sections from "../components/sections"
+import Fallback from "../components/fallback"
 
 interface PageProps {
   data: {
@@ -12,26 +14,22 @@ interface PageProps {
       slug: string
       description: string
       image: { id: string; url: string }
-      html: string
+      blocks: sections.HomepageBlock[]
     }
   }
 }
 
 export default function Page(props: PageProps) {
   const { page } = props.data
-
   return (
     <Layout>
-      <Box paddingY={5}>
-        <Container width="narrow">
-          <Heading as="h1">{page.title}</Heading>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: page.html,
-            }}
-          />
-        </Container>
-      </Box>
+      {page.blocks?.map((block, index) => {
+        const { id, blocktype, ...componentProps } = block
+        const Component = sections[blocktype] || Fallback
+        return <Component blockIndex={index} key={id} {...(componentProps as any)} />
+
+      })}
+
     </Layout>
   )
 }
@@ -50,7 +48,20 @@ export const query = graphql`
         id
         url
       }
-      html
+      blocks: content {
+        id
+        blocktype
+        ...HomepageHeroContent
+        ...HomepageFeatureListContent
+        ...HomepageCtaContent
+        ...HomepageLogoListContent
+        ...HomepageTestimonialListContent
+        ...HomepageBenefitListContent
+        ...HomepageStatListContent
+        ...HomepageProductListContent
+        ...PageContentContent
+        ...ImageContent
+      }
     }
   }
 `

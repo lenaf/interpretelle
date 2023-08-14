@@ -1,5 +1,6 @@
 import * as React from "react"
 import clsx from 'clsx';
+import { useLocation } from '@reach/router';
 
 import { graphql, useStaticQuery } from "gatsby"
 import { Menu, X } from "react-feather"
@@ -24,6 +25,7 @@ import {
 import NavItemGroup, { NavItemGroupNavItem } from "./nav-item-group"
 import Logo from "./logo";
 import LogoIcon from "./logiIcon"
+import { colors } from "../colors.css";
 
 
 type NavItem = {
@@ -93,6 +95,7 @@ export default function Header() {
 
   const { navItems, cta } = data.layout.header
   const [isOpen, setOpen] = React.useState(false)
+  const { pathname } = useLocation();
 
   React.useEffect(() => {
     if (isOpen) {
@@ -137,7 +140,7 @@ export default function Header() {
                         navItems={navItem.navItems}
                       />
                     ) : (
-                      <NavLink to={navItem.href}>{navItem.text}</NavLink>
+                      <NavLink to={navItem.href}><div style={pathname.includes(navItem.href) ? { color: colors.primary } : {}}>{navItem.text}</div></NavLink>
                     )}
                   </li>
                 ))}

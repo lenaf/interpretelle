@@ -11,18 +11,7 @@ export default function ContactPage() {
 
   return (
     <Layout>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Contact />
-      </div>
-
+      <Contact />
     </Layout >
   )
 }

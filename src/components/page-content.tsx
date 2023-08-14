@@ -1,23 +1,26 @@
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import * as React from "react"
-import { colors } from "../colors.css"
 import {
   Box,
   ButtonList,
   Container,
   Flex,
-  Heading,
   HomepageImage,
   HomepageLink,
   Kicker,
-  Section,
   Subhead,
-  SuperHeading,
   Text,
 } from "./ui"
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 
+export const renderOptions = {
+  renderText: text => {
+    return text.split('\n').reduce((children, textSegment, index) => {
+      return [...children, index > 0 && <br key={index} />, textSegment];
+    }, []);
+  },
+};
 
 export interface HeroProps {
   image?: HomepageImage
@@ -28,6 +31,7 @@ export interface HeroProps {
   links: HomepageLink[]
   imageOnLeft: boolean
   richHeader?: any
+  richText?: any
   blockIndex: number
 }
 
@@ -43,37 +47,37 @@ function HeroImage(props: { image?: HomepageImage }) {
 
 export default function Hero(props: HeroProps) {
   return (
-    <Section>
-      <Container className={`${props.blockIndex === 0 ? 'pt-8' : ''}`}>
+    <div >
+      <Container className='py-10'>
         <Flex gap={4} variant="responsive">
-          {props.imageOnLeft && <Box width="half">
+          {props.image && props.imageOnLeft && <Box width="half">
             <HeroImage image={props.image} />
           </Box>}
-          <Box width="half">
+          <Box width={props.image ? "fitContent" : "full"}>
             <Flex gap={0} variant="column" alignItems='start' className="justify-end">
               {props.kicker && <Kicker>{props.kicker}</Kicker>}
-              <Text variant={props.blockIndex === 0 ? 'superHeading' : 'heading'}>{props.richHeader ? renderRichText(props.richHeader, {}) : props.h1}</Text>
-              {/* <Subhead as="h1" className='-mt-8'>{props.subhead}</Subhead> */}
+              <Text variant='heading'>{props.richHeader ? renderRichText(props.richHeader, {}) : props.h1}</Text>
+              <Subhead as="h1" className='-mt-8'>{props.subhead}</Subhead>
               <div className="text-lg">{props.text}</div>
-              <ButtonList links={props.links} />
+              {props.richText && renderRichText(props.richText, renderOptions)}
+              {props.links && < ButtonList links={props.links} />}
             </Flex>
           </Box>
-          {!props.imageOnLeft && <Box width="half">
+          {props.image && !props.imageOnLeft && <Box width="half">
             <HeroImage image={props.image} />
           </Box>}
         </Flex>
       </Container>
-    </Section>
+    </div>
   )
 }
 
 export const query = graphql`
-  fragment HomepageHeroContent on HomepageHero {
+  fragment PageContentContent on PageContent {
     id
     kicker
     h1: heading
     subhead
-    text
     links {
       id
       href
@@ -86,5 +90,8 @@ export const query = graphql`
     }
     imageOnLeft
     richHeader
+    richText 
   }
 `
+
+

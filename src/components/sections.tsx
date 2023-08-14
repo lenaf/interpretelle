@@ -24,6 +24,9 @@ export { default as AboutHero } from "./about-hero"
 export { default as AboutStatList } from "./about-stat-list"
 export { default as AboutLeadership } from "./about-leadership"
 export { default as AboutLogoList } from "./about-logo-list"
+export { default as PageContent } from "./page-content"
+export { default as Image } from "./image"
+
 
 export type SectionProps =
   | HeroProps

@@ -129,6 +129,27 @@ exports.createSchemaCustomization = async ({ actions }) => {
       richHeader: JSON
     }
 
+    interface PageContent implements Node & HomepageBlock {
+      id: ID!
+      blocktype: String
+      heading: String!
+      kicker: String
+      subhead: String
+      image: HomepageImage
+      text: JSON
+      links: [HomepageLink]
+      imageOnLeft: Boolean
+      richHeader: JSON
+      richText: JSON
+    }
+
+    interface Image implements Node & HomepageBlock {
+      id: ID!
+      blocktype: String
+      title: String!
+      image: HomepageImage
+    }
+
     interface HomepageFeature implements Node & HomepageBlock {
       id: ID!
       blocktype: String
@@ -234,8 +255,10 @@ exports.createSchemaCustomization = async ({ actions }) => {
       blocktype: String
       heading: String
       kicker: String
-      text: String
+      richText: JSON
       content: [HomepageProduct]
+      links: [HomepageLink]
+      image: HomepageImage
     }
 
     interface Homepage implements Node {
@@ -342,6 +365,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       description: String
       image: HomepageImage
       html: String!
+      content: [HomepageBlock]
     }
   `)
 
@@ -392,6 +416,29 @@ exports.createSchemaCustomization = async ({ actions }) => {
       links: [HomepageLink] @link(from: "links___NODE")
       imageOnLeft: Boolean
       richHeader: JSON
+    }
+
+    type ContentfulPageContent implements Node & PageContent & HomepageBlock
+      @dontInfer {
+      id: ID!
+      blocktype: String @blocktype
+      heading: String!
+      kicker: String
+      subhead: String
+      image: HomepageImage @link(from: "image___NODE")
+      text: JSON
+      links: [HomepageLink] @link(from: "links___NODE")
+      imageOnLeft: Boolean
+      richHeader: JSON
+      richText: JSON
+    }
+
+    type ContentfulImage implements Node & Image & HomepageBlock
+      @dontInfer {
+      id: ID!
+      blocktype: String @blocktype
+      title: String!
+      image: HomepageImage @link(from: "image___NODE")
     }
 
     type ContentfulHomepageFeature implements Node & HomepageBlock & HomepageFeature
@@ -504,8 +551,10 @@ exports.createSchemaCustomization = async ({ actions }) => {
       blocktype: String @blocktype
       heading: String
       kicker: String
-      text: String
+      richText: JSON
       content: [HomepageProduct] @link(from: "content___NODE")
+      links: [HomepageLink] @link(from: "links___NODE")
+      image: HomepageImage @link(from: "image___NODE")
     }
 
     type ContentfulHomepage implements Node & Homepage @dontInfer {
@@ -614,6 +663,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       description: String
       image: HomepageImage @link(from: "image___NODE")
       html: String! @richText
+      content: [HomepageBlock] @link(from: "content___NODE")
     }
   `)
 }

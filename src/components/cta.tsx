@@ -26,7 +26,6 @@ export interface CtaProps {
 }
 
 export default function HomepageCta(props: CtaProps) {
-  console.log(props)
   return (
     <div style={{ background: colors.primary, color: colors.background }}>
       <Container>
