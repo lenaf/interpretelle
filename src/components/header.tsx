@@ -159,7 +159,6 @@ export default function Header(props) {
             </NavLink>
           </span>
           <Flex wrap={false}>
-            <Space />
             <div>
               {cta && (
                 <Button to={cta.href} variant={isOpen ? "reversed" : "primary"}>
