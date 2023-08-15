@@ -121,7 +121,7 @@ export default function Header(props) {
       scrolledDown ? 'bg-opacity-90' : 'bg-opacity-90',
     ])}>
       <Container className={desktopHeaderNavWrapper}>
-        <Flex variant="spaceBetween">
+        <Flex wrap={false} variant="spaceBetween">
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
             <Logo />
@@ -147,7 +147,7 @@ export default function Header(props) {
         </Flex>
       </Container>
       <Container className={mobileHeaderNavWrapper[isOpen ? "open" : "closed"]}>
-        <Flex variant="spaceBetween">
+        <Flex wrap={false} variant="spaceBetween">
           <span
             className={
               mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]
@@ -158,7 +158,7 @@ export default function Header(props) {
               <LogoIcon />
             </NavLink>
           </span>
-          <Flex>
+          <Flex wrap={false}>
             <Space />
             <div>
               {cta && (
