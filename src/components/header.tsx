@@ -117,11 +117,11 @@ export default function Header(props) {
 
   return (
     <header className={clsx([
-      'fixed w-full h-20 z-40 bg-white backdrop-blur-lg backdrop-filter duration-500',
+      'fixed w-full z-40 bg-white backdrop-blur-lg backdrop-filter duration-500',
       scrolledDown ? 'bg-opacity-90' : 'bg-opacity-90',
     ])}>
       <Container className={desktopHeaderNavWrapper}>
-        <Flex className='h-20' variant="spaceBetween">
+        <Flex variant="spaceBetween">
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
             <Logo />
@@ -147,7 +147,7 @@ export default function Header(props) {
         </Flex>
       </Container>
       <Container className={mobileHeaderNavWrapper[isOpen ? "open" : "closed"]}>
-        <Flex className='h-20' variant="spaceBetween">
+        <Flex variant="spaceBetween">
           <span
             className={
               mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]

@@ -6,6 +6,8 @@ export const desktopHeaderNavWrapper = style({
     position: "relative",
     zIndex: 1,
     display: "none",
+    paddingTop: '16px',
+    paddingBottom: '16px',
     "@media": {
         [media.medium]: {
             display: "block",
@@ -16,6 +18,8 @@ export const desktopHeaderNavWrapper = style({
 const mobileHeaderNavWrapperBase = style({
     display: "block",
     position: "relative",
+    paddingTop: '16px',
+    paddingBottom: '16px',
     "@media": {
         [media.medium]: {
             display: "none",
@@ -46,7 +50,7 @@ export const mobileNavOverlay = style({
     background: theme.colors.primary,
     zIndex: 1,
     "@media": {
-        [media.small]: {
+        [media.medium]: {
             display: "none",
         },
     },
