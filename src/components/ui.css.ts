@@ -2,20 +2,27 @@ import { style, styleVariants } from "@vanilla-extract/css"
 import { calc } from "@vanilla-extract/css-utils"
 import { theme } from "../theme.css"
 
-const breakpoints = ["40em", "52em", "64em"]
+const breakpoints = ["30em", "40em", "52em", "64em"]
 
 export const media = {
-  small: `screen and (min-width: ${breakpoints[0]})`,
-  medium: `screen and (min-width: ${breakpoints[1]})`,
-  large: `screen and (min-width: ${breakpoints[2]})`,
+  xsmall: `screen and (min-width: ${breakpoints[0]})`,
+  small: `screen and (min-width: ${breakpoints[1]})`,
+  medium: `screen and (min-width: ${breakpoints[2]})`,
+  large: `screen and (min-width: ${breakpoints[3]})`,
 }
 
 export const container = style({
   maxWidth: theme.sizes.container,
   marginLeft: "auto",
   marginRight: "auto",
-  paddingLeft: theme.space[5],
-  paddingRight: theme.space[5],
+  paddingLeft: theme.space[4],
+  paddingRight: theme.space[4],
+  "@media": {
+    [media.xsmall]: {
+      paddingLeft: theme.space[5],
+      paddingRight: theme.space[5],
+    },
+  },
 })
 
 export type Containers = "normal" | "wide" | "narrow" | "tight" | "fullbleed"
