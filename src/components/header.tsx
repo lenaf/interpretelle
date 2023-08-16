@@ -6,25 +6,20 @@ import {
   Container,
   Flex,
   FlexList,
-  Space,
   NavLink,
   Button,
   InteractiveIcon,
-  Nudge,
   VisuallyHidden,
 } from "./ui"
 import {
   mobileNavOverlay,
   mobileNavLink,
-  desktopHeaderNavWrapper,
-  mobileHeaderNavWrapper,
-  mobileNavSVGColorWrapper,
+  navWrapper,
 } from "./header.css"
 import NavItemGroup, { NavItemGroupNavItem } from "./nav-item-group"
 import Logo from "./logo";
-import LogoIcon from "./logiIcon"
 import { colors } from "../colors.css";
-
+import { useBreakpoint } from 'gatsby-plugin-breakpoints';
 
 type NavItem = {
   id: string
@@ -115,18 +110,20 @@ export default function Header(props) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const breakpoints = useBreakpoint();
+
   return (
     <header className={clsx([
       'fixed w-full z-40 bg-white backdrop-blur-lg backdrop-filter duration-500',
       scrolledDown ? 'bg-opacity-90' : 'bg-opacity-90',
     ])}>
-      <Container className={desktopHeaderNavWrapper}>
-        <Flex wrap={false} variant="spaceBetween">
+      <Container className={navWrapper}>
+        <Flex wrap={false} variant={breakpoints.xs ? "column" : "spaceBetween"}>
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
             <Logo />
           </NavLink>
-          <nav>
+          {!breakpoints.sm && <nav>
             <FlexList gap={4}>
               {navItems &&
                 navItems.map((navItem) => (
@@ -142,42 +139,14 @@ export default function Header(props) {
                   </li>
                 ))}
             </FlexList>
-          </nav>
+          </nav>}
           <div>{cta && <Button to={cta.href}>{cta.text}</Button>}</div>
-        </Flex>
-      </Container>
-      <Container className={mobileHeaderNavWrapper[isOpen ? "open" : "closed"]}>
-        <Flex wrap={false} variant="spaceBetween">
-          <span
-            className={
-              mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]
-            }
+          {breakpoints.sm && <InteractiveIcon
+            title="Toggle menu"
+            onClick={() => setOpen(!isOpen)}
           >
-            <NavLink to="/">
-              <VisuallyHidden>Home</VisuallyHidden>
-              <LogoIcon />
-            </NavLink>
-          </span>
-          <Flex wrap={false}>
-            <div>
-              {cta && (
-                <Button to={cta.href} variant={isOpen ? "reversed" : "primary"}>
-                  {cta.text}
-                </Button>
-              )}
-            </div>
-            <Nudge right={3}>
-              <InteractiveIcon
-                title="Toggle menu"
-                onClick={() => setOpen(!isOpen)}
-                className={
-                  mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]
-                }
-              >
-                {isOpen ? <X /> : <Menu />}
-              </InteractiveIcon>
-            </Nudge>
-          </Flex>
+            {isOpen ? <X /> : <Menu />}
+          </InteractiveIcon>}
         </Flex>
       </Container>
       {isOpen && (

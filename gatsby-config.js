@@ -21,6 +21,7 @@ module.exports = {
         host: process.env.CONTENTFUL_HOST,
       },
     },
+    'gatsby-plugin-breakpoints',
     "gatsby-plugin-sharp",
     "gatsby-plugin-image",
     {
