@@ -60,7 +60,9 @@ export default function ProductList(props: ProductListProps) {
 
   console.log(props.path)
   return (
-    <div id={props.heading} style={{ background: props.blockIndex % 2 === 0 ? colors.background : colors.active }}>
+    <div
+      id={props.heading.replace(' ', '-').toLocaleLowerCase()}
+      style={{ background: props.blockIndex % 2 === 0 ? colors.background : colors.active }}>
       <Section >
         <Container>
           <Box paddingY={4}>
@@ -74,7 +76,7 @@ export default function ProductList(props: ProductListProps) {
               )}
               <Heading>
                 {props.kicker && <Kicker>{props.kicker}</Kicker>}
-                <a>{props.heading}</a>
+                {props.heading}
               </Heading>
             </Box>
             {props.richText && renderRichText(props.richText, renderOptions)}
