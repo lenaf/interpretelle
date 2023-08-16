@@ -42,11 +42,12 @@ function HeroImage(props: { image?: HomepageImage }) {
 }
 
 export default function Hero(props: HeroProps) {
+  const isTop = props.blockIndex === 0;
   return (
     <Section>
-      <Container className={`${props.blockIndex === 0 ? 'pt-8' : ''}`}>
-        <Flex gap={4} variant="responsive">
-          {props.imageOnLeft && <Box width="half">
+      <Container className={`${isTop ? 'pt-8' : ''}`}>
+        <Flex gap={isTop ? 4 : 6} variant="responsive">
+          {props.imageOnLeft && <Box width={isTop ? "half" : "third"}>
             <HeroImage image={props.image} />
           </Box>}
           <Box width="half">
