@@ -4,6 +4,15 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+const myCustomQueries = {
+  xxs: '(max-width: 320px)',
+  xs: '(max-width: 480px)',
+  sm: '(max-width: 720px)',
+  md: '(max-width: 1024px)',
+  l: '(max-width: 1536px)',
+  portrait: '(orientation: portrait)',
+};
+
 module.exports = {
   siteMetadata: {
     siteUrl: "https://gatsbycontentfulhomepage.gatsbyjs.io/",
@@ -21,8 +30,12 @@ module.exports = {
         host: process.env.CONTENTFUL_HOST,
       },
     },
-    'gatsby-plugin-breakpoints',
-    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-plugin-breakpoints",
+      options: {
+        queries: myCustomQueries,
+      },
+    }, "gatsby-plugin-sharp",
     "gatsby-plugin-image",
     {
       resolve: `gatsby-plugin-sharp`,
