@@ -140,13 +140,15 @@ export default function Header(props) {
                 ))}
             </FlexList>
           </nav>}
-          <div>{cta && <Button to={cta.href}>{cta.text}</Button>}</div>
-          {breakpoints.sm && <InteractiveIcon
-            title="Toggle menu"
-            onClick={() => setOpen(!isOpen)}
-          >
-            {isOpen ? <X /> : <Menu />}
-          </InteractiveIcon>}
+          <Flex>
+            {cta && <Button to={cta.href}>{cta.text}</Button>}
+            {breakpoints.sm && <InteractiveIcon
+              title="Toggle menu"
+              onClick={() => setOpen(!isOpen)}
+            >
+              {isOpen ? <X /> : <Menu />}
+            </InteractiveIcon>}
+          </Flex>
         </Flex>
       </Container>
       {isOpen && (

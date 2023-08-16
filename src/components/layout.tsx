@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children, path }) => {
     >
       <Slice path={path} alias="header" />
       <main className="relative grow" id="mainContent" role="main">
-        <div className={`mx-auto pb-overlap ${breakpoints.xs ? 'pt-48' : 'pt-20'}`}>{children}</div>
+        <div className={`mx-auto pb-overlap ${breakpoints.xs ? 'pt-36' : 'pt-20'}`}>{children}</div>
       </main>
       <Slice alias="footer" />
     </div>
