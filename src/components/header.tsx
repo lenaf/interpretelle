@@ -123,7 +123,7 @@ export default function Header(props) {
             <VisuallyHidden>Home</VisuallyHidden>
             <Logo />
           </NavLink>
-          {!breakpoints.sm && <nav>
+          {!breakpoints.md && <nav>
             <FlexList gap={4}>
               {navItems &&
                 navItems.map((navItem) => (
@@ -142,7 +142,7 @@ export default function Header(props) {
           </nav>}
           <Flex>
             {cta && <Button to={cta.href}>{cta.text}</Button>}
-            {breakpoints.sm && <InteractiveIcon
+            {breakpoints.md && <InteractiveIcon
               title="Toggle menu"
               onClick={() => setOpen(!isOpen)}
             >
