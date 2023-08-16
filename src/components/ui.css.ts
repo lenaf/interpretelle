@@ -478,6 +478,7 @@ const button = style({
   paddingLeft: theme.space[3],
   paddingRight: theme.space[3],
   borderRadius: theme.radii.button,
+  whiteSpace: 'nowrap'
 })
 
 export type ButtonVariants = "primary" | "reversed" | "link" | "linkReversed"
